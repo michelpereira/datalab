@@ -33,7 +33,7 @@ RUN echo "deb-src http://ftp.us.debian.org/debian testing main" >> /etc/apt/sour
     apt-get update -y && \
     apt-get install --no-install-recommends -y -q python unzip ca-certificates build-essential \
     libatlas-base-dev liblapack-dev gfortran libpng-dev libfreetype6-dev libxft-dev libxml2-dev \
-    libsnappy-dev python-dev python-setuptools python-zmq openssh-client wget curl git \
+    libsnappy-dev python-dev python-setuptools python-zmq openssh-client wget curl git libsasl2-dev \
     pkg-config zip && \
     easy_install pip && \
     mkdir -p /tools && \
@@ -142,6 +142,8 @@ RUN echo "deb-src http://ftp.us.debian.org/debian testing main" >> /etc/apt/sour
     pip3 install -U --upgrade-strategy only-if-needed --no-cache-dir ipywidgets==6.0.0 && \
     pip3 install -U --upgrade-strategy only-if-needed --no-cache-dir notebook==4.2.3 && \
     pip3 install -U --upgrade-strategy only-if-needed --no-cache-dir ipykernel==4.5.2 && \
+    pip3 install -U --upgrade-strategy only-if-needed --no-cache-dir pyhive[hive] && \
+    pip3 install -U --upgrade-strategy only-if-needed --no-cache-dir pyhive[presto] && \
     find /usr/local/lib/python3.4 -type d -name tests | xargs rm -rf && \
 
 # Install python2 version of notebook after the python3 version, so that we
